@@ -1,0 +1,70 @@
+@import "_normalize";
+@import "_variables";
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #d1cfde;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: white;
+    position: relative;
+    width: 500px;
+    margin: 0 auto;
+    align-items: center;
+    border: 1px solid #87868c;
+    box-sizing: border-box;
+    box-shadow: cornsilk;
+    padding: 30px;
+    &__title {
+        font-style: 'Gotu', sans-serif;
+        text-align: center;
+        padding: 20px;
+    }
+}
+
+.task {
+    padding: 20px;
+    text-align: center;
+    &__name {}
+    &__button {
+        background-color: blue;
+        border-top-right-radius: 8px;
+        color: white;
+        height: 30px;
+        width: 120px;
+        box-shadow: #87868c;
+    }
+}
+
+.answer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    margin-right: 0;
+    text-align: center;
+    list-style: none;
+    &__wrong {
+        background-color: red;
+        color: white;
+        height: 30px;
+        width: 40px;
+        border-top-right-radius: 8px;
+    }
+    &__done {
+        height: 30px;
+        width: 40px;
+        border-top-left-radius: 8px;
+    }
+}
