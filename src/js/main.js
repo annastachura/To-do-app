@@ -18,7 +18,6 @@ var tasks = [
     "zadzwoń do mamy",
     "kup pomidory",
     "wynieś śmieci",
-    "Pobiegaj"
 ];
 
 function addNewTask(title) {
