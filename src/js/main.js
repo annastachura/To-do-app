@@ -14,51 +14,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-var tasks = [
-    "zadzwoń do mamy",
-    "kup pomidory",
-    "wynieś śmieci",
-    "Pobiegaj"
-];
-
-function addNewTask(title) {
-
-    var taskLi = ` <li class="answer__element">
-    <button class="answer__done answer__done--js">✓</button>
-    <input value="${title}"> </input>
-    <button class="answer__wrong">X</button>
-</li>`
-
-    const answer = document.querySelector('.answer--js');
-    answer.innerHTML += taskLi;
-
-}
-
-function showTasks() {
-    tasks.forEach(function(task) {
-        addNewTask(task);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    showTasks();
-});
-
-
-const task__button = document.querySelector('.task__button--js');
-task__button.addEventListener('click', function() {
-    const input = document.querySelector('.task__name--js');
-    addNewTask(input.value);
-});
-
-
-// const done = document.querySelector('.done--js');
-// const answer__done = document.querySelector('.answer__done--js');
-// answer__done.addEventListener('click', function() {
-
-
-// });
-
+var tasks = [];
 var completedTasks = [];
 
 function completeTask(taskId) {
@@ -66,7 +22,61 @@ function completeTask(taskId) {
     tasks.splice(taskId, 1)
     completedTasks.push(task);
     showTasks();
-    //     var deleteTaskLI = `<ul class="done done--js">
-    //   <li class="done__task"></li>
-    // </ul>`
 }
+
+function deleteTask(taskId) {
+    tasks.splice(taskId, 1)
+    showTasks();
+}
+
+function addNewTask(title) {
+    tasks.push(title);
+    showTasks();
+}
+
+function showTasks() {
+    const answer = document.querySelector('.answer--js');
+    answer.innerHTML = ("");
+    tasks.forEach(function(title) {
+
+        var taskLi = document.createElement('li');
+        taskLi.innerHTML += `<button class="answer__done answer__done--js">✓</button>
+        <input value="${title}"> </input>
+        <button class="answer__wrong answer__wrong--js">X</button>`
+
+
+        answer.appendChild(taskLi);
+        const answer__done = taskLi.querySelector('.answer__done--js');
+
+        answer__done.addEventListener('click', function() {
+            const taskIndex = tasks.indexOf(title);
+            completeTask(taskIndex);
+        });
+
+        const wrong__button = taskLi.querySelector('.answer__wrong--js');
+        wrong__button.addEventListener('click', function() {
+            const taskIndex = tasks.indexOf(title);
+            deleteTask(taskIndex);
+        });
+
+    });
+    const completedList = document.querySelector('.done--js');
+    completedList.innerHTML = ("");
+    completedTasks.forEach(function(title) {
+        var newElement = document.createElement('li');
+        newElement.innerHTML += ` <p>${title}</p>`
+        completedList.appendChild(newElement);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    showTasks();
+});
+
+const task__button = document.querySelector('.task__button--js');
+task__button.addEventListener('click', function() {
+    const input = document.querySelector('.task__name--js');
+    if (input.value) {
+        addNewTask(input.value);
+    }
+});
