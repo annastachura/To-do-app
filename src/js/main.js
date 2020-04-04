@@ -47,8 +47,11 @@ function showTasks() {
     tasks.forEach(function(title) {
 
         var taskLi = document.createElement('li');
-        taskLi.innerHTML += `<button class="answer__done answer__done--js">✓</button>
-        <input value="${title}"> </input>
+        taskLi.classList.add("box");
+        taskLi.innerHTML +=
+            `
+        <button class="answer__done answer__done--js">✓</button>
+        <input class = "waitInput" value="${title}"> </input>
         <button class="answer__wrong answer__wrong--js">X</button>`
 
 
@@ -81,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const input = document.querySelector('.task__name--js');
+
 const task__button = document.querySelector('.task__button--js');
 task__button.addEventListener('click', function() {
 

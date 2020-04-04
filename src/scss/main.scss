@@ -45,6 +45,10 @@ body {
         height: 30px;
         width: 120px;
         box-shadow: #87868c;
+        @media (max-width: 640px) {
+            height: 40px;
+            width: 150px;
+        }
     }
 }
 
@@ -71,4 +75,14 @@ body {
 
 .done {
     text-decoration: line-through;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    row-gap: 15px;
+}
+
+.waitInput {
+    flex-grow: 1;
 }
