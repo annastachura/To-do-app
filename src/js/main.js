@@ -1,42 +1,49 @@
 "use strict";
 
-// service worker registration - remove if you're not going to use it
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('serviceworker.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-        });
-    });
+const Json2 = localStorage.getItem('Data');
+const Json4 = localStorage.getItem('Data2');
+
+
+var tasks = JSON.parse(Json2);
+if (tasks == null) {
+    tasks = [];
 }
-
-var tasks = [];
-var completedTasks = [];
+var completedTasks = JSON.parse(Json4);
+if (completedTasks == null) {
+    completedTasks = [];
+}
 
 function completeTask(taskId) {
     var task = tasks[taskId]
     tasks.splice(taskId, 1)
     completedTasks.push(task);
     showTasks();
+    const Json3 = JSON.stringify(completedTasks);
+    localStorage.setItem('Data2', Json3);
+    const Json = JSON.stringify(tasks);
+    localStorage.setItem('Data', Json);
+
 }
+
 
 function deleteTask(taskId) {
     tasks.splice(taskId, 1)
     showTasks();
+    const Json = JSON.stringify(tasks);
+    localStorage.setItem('Data', Json);
 }
 
 function addNewTask(title) {
     tasks.push(title);
     showTasks();
+    const Json = JSON.stringify(tasks);
+    localStorage.setItem('Data', Json);
 }
 
 function showTasks() {
     const answer = document.querySelector('.answer--js');
-    answer.innerHTML = ("");
+    answer.innerHTML = "";
     tasks.forEach(function(title) {
 
         var taskLi = document.createElement('li');
