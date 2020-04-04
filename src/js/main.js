@@ -80,10 +80,19 @@ document.addEventListener('DOMContentLoaded', function() {
     showTasks();
 });
 
+const input = document.querySelector('.task__name--js');
 const task__button = document.querySelector('.task__button--js');
 task__button.addEventListener('click', function() {
-    const input = document.querySelector('.task__name--js');
+
     if (input.value) {
         addNewTask(input.value);
+        input.value = "";
     }
+});
+input.addEventListener('keyup', function(e) {
+    if (input.value && e.keyCode === 13) {
+        addNewTask(input.value);
+        input.value = "";
+    }
+
 });
