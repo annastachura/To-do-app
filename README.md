@@ -1,9 +1,13 @@
-# wtf-gulp-starter
+# Aplikacja to do 
 
-`npm install -g gulp-cli`
+### Aplikacja służy do zapisywania zadania do listy zadań i wykreślaniu go, po uprzednim wykonaniu. Dane przechowywane są w local storage. 
 
-`npm install`
 
-`gulp`
+![screen apki](readme/screen.png)
 
-To publish your page using github pages use `npm run deploy`
+
+
+
+
+
+## Aby używać aplikacji skorzystaj z linku: https://annastachura.github.io/To-do-app/
